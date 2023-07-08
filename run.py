@@ -33,3 +33,11 @@ class Board:
             return "It's a Hit"
         else:
             return "It's a Miss"
+    
+    # Function for computer guess
+    def add_ship(self, x, y, type="computer"):
+        if len(self.ships) >= self.am_ships:
+            print("No more ships to be added")
+        else:
+            if self.type == "player":
+                self.board[x][y] = "O"
