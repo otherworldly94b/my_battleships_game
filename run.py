@@ -22,3 +22,16 @@ class Board:
     def print(self):
         for row in self.board:
             print(" ".join(row))
+
+    # Function for player and computer guess
+    def guess(self, x, y):
+        self.guesses.append((x, y))
+        self.board[x][y] = "X"
+
+        if (x, y) in self.ships:
+            self.board[x][y] = "*"
+            return "It's a Hit"
+        else:
+            return "It's a Miss"
+    
+    
