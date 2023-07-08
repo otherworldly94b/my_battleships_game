@@ -41,3 +41,9 @@ class Board:
         else:
             if self.type == "player":
                 self.board[x][y] = "O"
+
+def random_point(size):
+    """
+    Helper function to return a random integer between 0 and size
+    """
+    return randint(0, size - 1)
