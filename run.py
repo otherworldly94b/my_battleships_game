@@ -9,3 +9,12 @@ class Board:
     There are methods that print the board, add the ships
     and the guess on the board
     """
+    def __init__(self, size, am_ships, name, type):
+        self.size = size
+        self.board = [["▢" for x in range(size)] for y in range(size)]
+        self.am_ships = am_ships
+        self.name = name
+        self.type = type
+        self.guesses = []
+        self.ships = []
+        
