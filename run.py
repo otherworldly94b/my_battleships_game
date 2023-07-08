@@ -23,7 +23,7 @@ class Board:
         for row in self.board:
             print(" ".join(row))
 
-    # Function for player and computer guess
+    # Function for player guess
     def guess(self, x, y):
         self.guesses.append((x, y))
         self.board[x][y] = "X"
@@ -33,5 +33,3 @@ class Board:
             return "It's a Hit"
         else:
             return "It's a Miss"
-    
-    
