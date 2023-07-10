@@ -1,7 +1,7 @@
 from random import randint
 
 # Create the game board
-# Code from CI sample video
+# Initial code from CI sample video
 class Board:
     """
     Creates the main board. Sets the size and the number 
@@ -58,3 +58,8 @@ def valid_places(size, x, y, guesses):
     else:
         return True
 
+# Function to place the ships for computer (missing something here for sure)
+def fill_board(board):
+    ship_row = randint(0, len(board) - 1)
+    ship_col = randint(0, len(board[0]) - 1)
+    return ship_row, ship_col
