@@ -63,3 +63,6 @@ def fill_board(board):
     ship_row = randint(0, len(board) - 1)
     ship_col = randint(0, len(board[0]) - 1)
     return ship_row, ship_col
+
+def run_game():
+    # will have to call all our functions here 
