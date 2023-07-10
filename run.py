@@ -47,3 +47,14 @@ def random_point(size):
     Helper function to return a random integer between 0 and size
     """
     return randint(0, size - 1)
+
+def valid_places(size, x, y, guesses):
+    """
+    Checks the coordinates provided by the player.
+    Checks if the coordinates are within the bounds of the game board.
+    """
+    if x < 0 or x >= size or y < 0 or y >= size or (x, y) in guesses:
+        print("Please use valid coordinates or ones you have not used before")
+    else:
+        return True
+
