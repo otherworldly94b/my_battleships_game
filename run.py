@@ -82,6 +82,9 @@ def run_game():
     player_name = input("Please write your name: \n")
     print("_" * 25)
 
+    computer_board = Board(size, am_ships, "Computer", type="computer")
+    player_board = Board(size, am_ships, player_name, type="player")
+
     
 
 run_game()
