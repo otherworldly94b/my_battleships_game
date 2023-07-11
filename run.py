@@ -18,13 +18,19 @@ class Board:
         self.guesses = []
         self.ships = []
 
-    # Function to print the board
+
     def print(self):
+        """
+        Function to print the board
+        """
         for row in self.board:
             print(" ".join(row))
 
-    # Function for player guess
+
     def guess(self, x, y):
+        """
+        Function for player guess
+        """
         self.guesses.append((x, y))
         self.board[x][y] = "X"
 
@@ -34,8 +40,11 @@ class Board:
         else:
             return "It's a Miss"
     
-    # Function for computer guess
+
     def add_ship(self, x, y, type="computer"):
+        """
+        Function for computer guess
+        """
         if len(self.ships) >= self.am_ships:
             print("No more ships to be added")
         else:
@@ -58,11 +67,16 @@ def valid_places(size, x, y, guesses):
     else:
         return True
 
-# Function to place the ships for computer (missing something here for sure)
+
 def fill_board(board):
+    """
+    Function to place the ships on the board
+    """
     ship_row = randint(0, len(board) - 1)
     ship_col = randint(0, len(board[0]) - 1)
     return ship_row, ship_col
+
+
 
 def run_game():
     """
