@@ -77,6 +77,14 @@ def fill_board(board):
     return ship_row, ship_col
 
 def take_guess(board):
+    """
+    Handles the player's guess input
+    """
+    x = int(input("Enter row position (0 to 5): "))
+    y = int(input("Enter column position (0 to 5): "))
+    result = board.guess(x, y)
+    print(result)
+
 
 def start_game(computer_board, player_board):
 
