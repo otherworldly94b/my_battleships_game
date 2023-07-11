@@ -70,4 +70,18 @@ def run_game():
     resets the scores and updates the boards.
     """
 
+    size = 5
+    am_ships = 4 
+    scores["player"] = 0
+    scores["computer"] = 0 
+    print("_" * 25)
+    print("BATTLESHIPS UNLEASHED!")
+    print(f" Board Size: {size}. Ship availability: {am_ships}")
+    print("row: 0, col: 0, found at the top left corner of the board")
+    print("_" * 25)
+    player_name = input("Please write your name: \n")
+    print("_" * 25)
+
+    
+
 run_game()
