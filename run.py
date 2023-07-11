@@ -72,8 +72,8 @@ def fill_board(board):
     """
     Function to place the ships on the board
     """
-    ship_row = randint(0, len(board) - 1)
-    ship_col = randint(0, len(board[0]) - 1)
+    ship_row = randint(0, 5)
+    ship_col = randint(0, 5)
     return ship_row, ship_col
 
 def take_guess(board):
