@@ -80,8 +80,8 @@ def take_guess(board):
     """
     Handles the player's guess input
     """
-    x = int(input("Enter row position (0 to 5): "))
-    y = int(input("Enter column position (0 to 5): "))
+    x = int(input("Enter row position (0 to 4): "))
+    y = int(input("Enter column position (0 to 4): "))
     result = board.guess(x, y)
     print(result)
 
@@ -92,6 +92,13 @@ def start_game(computer_board, player_board):
         take_guess(computer_board)
         player_board.print()
         print("")
+
+        # Confirm if the player has won
+        if scores["computer"] == player_board.am_ships:
+            print("Amazing! You won!")
+            break
+
+        
 
 def run_game():
     """
