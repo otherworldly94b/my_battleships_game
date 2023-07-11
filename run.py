@@ -76,6 +76,9 @@ def fill_board(board):
     ship_col = randint(0, len(board[0]) - 1)
     return ship_row, ship_col
 
+def take_guess(board):
+
+def start_game(computer_board, player_board):
 
 
 def run_game():
