@@ -65,4 +65,9 @@ def fill_board(board):
     return ship_row, ship_col
 
 def run_game():
-    # will have to call all our functions here 
+    """
+    Starts a new game. Creates the board size, adds the number of ships, 
+    resets the scores and updates the boards.
+    """
+
+run_game()
