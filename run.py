@@ -89,6 +89,6 @@ def run_game():
         fill_board(player_board)
         fill_board(computer_board)
 
-    
+    # start_game(computer_board, player_board)
 
 run_game()
