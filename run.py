@@ -64,7 +64,7 @@ def valid_places(size, x, y, guesses):
     Checks if the coordinates are within the bounds of the game board.
     """
     if x < 0 or x >= size or y < 0 or y >= size or (x, y) in guesses:
-        print("Please use valid coordinates or ones you have not used before") # need to fix
+        return False
     else:
         return True
 
@@ -88,7 +88,9 @@ def take_guess(board):
         x = int(input("Enter row position (0 to 4): "))
         y = int(input("Enter column position (0 to 4): "))
 
-        if valid_places(board.size, x, y, board.guesses):
+        if not valid_places(board.size, x, y, board.guesses):
+            print("Please use valid coordinates or ones you have not used before")
+        else:
             result = board.guess(x, y)
             print(result)
             break
@@ -130,7 +132,7 @@ def start_game(computer_board, player_board):
 
         # Confirm if the player has won
         if scores["computer"] == player_board.am_ships:
-            print("Amazing! You won!")
+            print("Amazing! All enemy ships destroyed! You won!")
             break
 
         turn += 1
@@ -145,7 +147,7 @@ def start_game(computer_board, player_board):
 
         # Confirm if the computer has won
         if scores["player"] == computer_board.am_ships:
-            print("Oops! Computer won!")
+            print("Oops! All your ships are destroyed! Computer won!")
             break
         
 
