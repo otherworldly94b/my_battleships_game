@@ -87,7 +87,10 @@ def take_guess(board):
         x = int(input("Enter row position (0 to 4): "))
         y = int(input("Enter column position (0 to 4): "))
 
-       
+        if valid_places(board.size, x, y, board.guesses):
+            result = board.guess(x, y)
+            print(result)
+            break
 
 
 
