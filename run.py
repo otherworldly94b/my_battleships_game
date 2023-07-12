@@ -92,6 +92,21 @@ def take_guess(board):
             print(result)
             break
 
+def computer_guess(player_board):
+    while True:
+        x = random_point(player_board.size)
+        y = random_point(player_board.size)
+
+        if (x, y) not in player_board.guesses:
+            break
+
+    result = player_board.guess(x, y)
+    print(f"Computer guessed: row {x}, column {y}")
+    print(result)
+
+    if result == "It's a Hit":
+        scores["computer"] += 1
+
 
 
 def start_game(computer_board, player_board):
@@ -99,7 +114,7 @@ def start_game(computer_board, player_board):
     player_board.print()
     print('====================================')
     print('\n')
-    print('=============== COMPUTER ===============')
+    print('=============== COMPUTER =============')
     computer_board.print()
     print('====================================')
     while True:
@@ -113,6 +128,7 @@ def start_game(computer_board, player_board):
             print("Amazing! You won!")
             break
 
+        
         
 
 def run_game():
