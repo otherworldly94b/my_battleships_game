@@ -82,11 +82,36 @@ def fill_board(board):
 
 def take_guess(board):
     """
-    Handles the player's guess input
+    Handles the player's guess input.
+    There are 4 paths:
+    1. Use valid coordinates
+    2. Use "q" to quit
+    3. Use coordinates that have used before and receive an error message
+    4. Use invalid coordinates and receive an error message. 
     """
     while True:
-        x = int(input("Enter row position (0 to 4): "))
-        y = int(input("Enter column position (0 to 4): "))
+        xrow_input = input("Enter row position (0 to 4) or 'q' to quit: ")
+        
+        if xrow_input.lower() == 'q':
+            print("Quitting the game...")
+            exit()
+
+        if not xrow_input.isdigit():
+            print("Please provide a valid integer coordinate or 'q' to quit.")
+            continue
+
+        ycol_input = input("Enter column position (0 to 4) or 'q' to quit: ")
+
+        if ycol_input.lower() == 'q':
+            print("Quitting the game...")
+            exit()
+
+        if not ycol_input.isdigit():
+            print("Please provide a valid integer coordinate or 'q' to quit.")
+            continue
+
+        x = int(x_input)
+        y = int(y_input)
 
         if not valid_places(board.size, x, y, board.guesses):
             print("Please use valid coordinates or ones you have not used before")
@@ -163,8 +188,9 @@ def run_game():
     scores["computer"] = 0 
     print("_" * 45)
     print("BATTLESHIPS UNLEASHED!")
-    print(f" Board Size: {size}. Ship availability: {am_ships}")
+    print(f"Board Size: {size}. Ship availability: {am_ships}")
     print("row: 0, col: 0, found at the top left corner of the board")
+    print("Ships will be automatically and randomly placed for both the player and the computer")
     print("_" * 45)
     player_name = input("Please write your name, if you don't write anything then I will just call you Player: \n").strip()
     if player_name == '': 
