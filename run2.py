@@ -46,7 +46,7 @@ class Board:
         Function for computer guess
         """
         if len(self.ships) >= self.am_ships:
-            pass
+            print("No more ships to be added")
         else:
             self.ships.append((x, y))
             if self.type == "player":
@@ -70,52 +70,33 @@ def valid_places(size, x, y, guesses):
 
 
 def fill_board(board):
+    """
+    Function to place the ships on the board
+    """
     for _ in range(board.am_ships):
         while True:
             x = random_point(board.size)
             y = random_point(board.size)
-            
             if valid_places(board.size, x, y, board.ships):
                 board.add_ship(x, y)
                 break
-
 
 def take_guess(board):
     """
     Handles the player's guess input
     """
-    while True:
-        x = int(input("Enter row position (0 to 4): "))
-        y = int(input("Enter column position (0 to 4): "))
-
-        if valid_places(board.size, x, y, board.guesses):
-            result = board.guess(x, y)
-            print(result)
-            break
-
-def computer_guess(player_board):
-    while True:
-        x = random_point(player_board.size)
-        y = random_point(player_board.size)
-
-        if (x, y) not in player_board.guesses:
-            break
-
-    result = player_board.guess(x, y)
-    print(f"Computer guessed: row {x}, column {y}")
+    x = int(input("Enter row position (0 to 4): "))
+    y = int(input("Enter column position (0 to 4): "))
+    result = board.guess(x, y)
     print(result)
-
-    if result == "It's a Hit":
-        scores["computer"] += 1
-
 
 
 def start_game(computer_board, player_board):
-    print('=============== PLAYER ===============')
+    print('============= PLAYER ===============')
     player_board.print()
     print('====================================')
     print('\n')
-    print('=============== COMPUTER =============')
+    print('=========== COMPUTER ===============')
     computer_board.print()
     print('====================================')
     while True:
@@ -129,15 +110,6 @@ def start_game(computer_board, player_board):
             print("Amazing! You won!")
             break
 
-        print("Computer's Turn")
-        computer_guess(player_board)
-        player_board.print()
-        print("")
-
-        # Confirm if the computer has won
-        if scores["player"] == computer_board.am_ships:
-            print("Oops! Computer won!")
-            break
         
 
 def run_game():
@@ -150,29 +122,28 @@ def run_game():
     am_ships = 4 
     scores["player"] = 0
     scores["computer"] = 0 
-    print("_" * 45)
+    print("_" * 25)
     print("BATTLESHIPS UNLEASHED!")
     print(f" Board Size: {size}. Ship availability: {am_ships}")
     print("row: 0, col: 0, found at the top left corner of the board")
-    print("_" * 45)
+    print("_" * 25)
     player_name = input("Please write your name, if you don't write anything then I will just call you Player: \n").strip()
     if player_name == '': 
         player_name = 'Player'
     print(f'OK, so hi there {player_name}')
-    print("_" * 45)
+    print("_" * 25)
 
     computer_board = Board(size, am_ships, "Computer", type="computer")
     player_board = Board(size, am_ships, player_name, type="player")
-
     sr = 0
     sc = 0
     for i in range(am_ships):
         sr = fill_board(player_board)
         sc = fill_board(computer_board)
 
-    # print(sr)
-    # print(sc)
-    
+    print("sr: ", sr)
+    print("sc: ", sc)
+
     start_game(computer_board, player_board)
 
 scores = {"player": 0, "computer": 0}
