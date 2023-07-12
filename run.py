@@ -87,10 +87,17 @@ def take_guess(board):
 
 
 def start_game(computer_board, player_board):
+    print('============= PLAYER ===============')
+    player_board.print()
+    print('====================================')
+    print('\n')
+    print('=========== COMPUTER ===============')
+    computer_board.print()
+    print('====================================')
     while True:
         print("Player's Turn")
         take_guess(computer_board)
-        player_board.print()
+        computer_board.print()
         print("")
 
         # Confirm if the player has won
