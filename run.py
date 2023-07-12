@@ -130,11 +130,15 @@ def run_game():
 
     computer_board = Board(size, am_ships, "Computer", type="computer")
     player_board = Board(size, am_ships, player_name, type="player")
-
-    for ship in range(am_ships):
-        fill_board(player_board)
-        fill_board(computer_board)
-
-    # start_game(computer_board, player_board)
+    sr = 0
+    sc = 0
+    for i in range(am_ships):
+        sr = fill_board(player_board)
+        sc = fill_board(computer_board)
+​
+    print(sr)
+    print(sc)
+​
+    start_game(computer_board, player_board)
 
 run_game()
