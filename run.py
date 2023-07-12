@@ -80,18 +80,23 @@ def take_guess(board):
     """
     Handles the player's guess input
     """
-    x = int(input("Enter row position (0 to 4): "))
-    y = int(input("Enter column position (0 to 4): "))
-    result = board.guess(x, y)
-    print(result)
+    while True:
+        x = int(input("Enter row position (0 to 4): "))
+        y = int(input("Enter column position (0 to 4): "))
+
+        if valid_places(board.size, x, y, board.guesses):
+            result = board.guess(x, y)
+            print(result)
+            break
+
 
 
 def start_game(computer_board, player_board):
-    print('============= PLAYER ===============')
+    print('=============== PLAYER ===============')
     player_board.print()
     print('====================================')
     print('\n')
-    print('=========== COMPUTER ===============')
+    print('=============== COMPUTER ===============')
     computer_board.print()
     print('====================================')
     while True:
@@ -117,11 +122,11 @@ def run_game():
     am_ships = 4 
     scores["player"] = 0
     scores["computer"] = 0 
-    print("_" * 25)
+    print("_" * 45)
     print("BATTLESHIPS UNLEASHED!")
     print(f" Board Size: {size}. Ship availability: {am_ships}")
     print("row: 0, col: 0, found at the top left corner of the board")
-    print("_" * 25)
+    print("_" * 45)
     player_name = input("Please write your name, if you don't write anything then I will just call you Player: \n").strip()
     if player_name == '': 
         player_name = 'Player'
@@ -130,15 +135,17 @@ def run_game():
 
     computer_board = Board(size, am_ships, "Computer", type="computer")
     player_board = Board(size, am_ships, player_name, type="player")
+
     sr = 0
     sc = 0
     for i in range(am_ships):
         sr = fill_board(player_board)
         sc = fill_board(computer_board)
-​
+
     print(sr)
     print(sc)
-​
+    
     start_game(computer_board, player_board)
 
+scores = {"player": 0, "computer": 0}
 run_game()
