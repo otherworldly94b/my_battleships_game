@@ -70,6 +70,10 @@ def valid_places(size, x, y, guesses):
 
 
 def fill_board(board):
+    """
+    Fills the board with how many ships are available and
+    checks for correct coordinates
+    """
     for _ in range(board.am_ships):
         while True:
             x = random_point(board.size)
@@ -175,7 +179,7 @@ def start_game(computer_board, player_board):
             print("Oops! All your ships are destroyed! Computer won!")
             break
         
-
+# Initial code from CI sample video
 def run_game():
     """
     Starts a new game. Creates the board size, adds the number of ships, 
@@ -207,9 +211,6 @@ def run_game():
         sr = fill_board(player_board)
         sc = fill_board(computer_board)
 
-    # print(sr)
-    # print(sc)
-    
     start_game(computer_board, player_board)
 
 scores = {"player": 0, "computer": 0}
