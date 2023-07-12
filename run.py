@@ -122,7 +122,10 @@ def run_game():
     print(f" Board Size: {size}. Ship availability: {am_ships}")
     print("row: 0, col: 0, found at the top left corner of the board")
     print("_" * 25)
-    player_name = input("Please write your name: \n")
+    player_name = input("Please write your name, if you don't write anything then I will just call you Player: \n").strip()
+    if player_name == '': 
+        player_name = 'Player'
+    print(f'OK, so hi there {player_name}')
     print("_" * 25)
 
     computer_board = Board(size, am_ships, "Computer", type="computer")
