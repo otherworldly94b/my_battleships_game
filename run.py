@@ -64,7 +64,7 @@ def valid_places(size, x, y, guesses):
     Checks if the coordinates are within the bounds of the game board.
     """
     if x < 0 or x >= size or y < 0 or y >= size or (x, y) in guesses:
-        print("Please use valid coordinates or ones you have not used before")
+        print("Please use valid coordinates or ones you have not used before") # need to fix
     else:
         return True
 
@@ -118,6 +118,10 @@ def start_game(computer_board, player_board):
     print('=============== COMPUTER =============')
     computer_board.print()
     print('====================================')
+
+    max_turns = 25  # Maximum number of turns equivalent to all squares
+    turn = 0  # Turn counter
+    
     while True:
         print("Player's Turn")
         take_guess(computer_board)
@@ -127,6 +131,11 @@ def start_game(computer_board, player_board):
         # Confirm if the player has won
         if scores["computer"] == player_board.am_ships:
             print("Amazing! You won!")
+            break
+
+        turn += 1
+        if turn >= max_turns:
+            print("Maximum number of turns reached. Game over!")
             break
 
         print("Computer's Turn")
