@@ -48,6 +48,7 @@ class Board:
         if len(self.ships) >= self.am_ships:
             print("No more ships to be added")
         else:
+            self.ships.append((x, y))
             if self.type == "player":
                 self.board[x][y] = "O"
 
@@ -69,12 +70,14 @@ def valid_places(size, x, y, guesses):
 
 
 def fill_board(board):
-    """
-    Function to place the ships on the board
-    """
-    ship_row = randint(0, 5)
-    ship_col = randint(0, 5)
-    return ship_row, ship_col
+    for _ in range(board.am_ships):
+        while True:
+            x = random_point(board.size)
+            y = random_point(board.size)
+            if valid_places(board.size, x, y, board.ships):
+                board.add_ship(x, y)
+                break
+
 
 def take_guess(board):
     """
@@ -84,10 +87,7 @@ def take_guess(board):
         x = int(input("Enter row position (0 to 4): "))
         y = int(input("Enter column position (0 to 4): "))
 
-        if valid_places(board.size, x, y, board.guesses):
-            result = board.guess(x, y)
-            print(result)
-            break
+       
 
 
 
@@ -131,7 +131,7 @@ def run_game():
     if player_name == '': 
         player_name = 'Player'
     print(f'OK, so hi there {player_name}')
-    print("_" * 25)
+    print("_" * 45)
 
     computer_board = Board(size, am_ships, "Computer", type="computer")
     player_board = Board(size, am_ships, player_name, type="player")
