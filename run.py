@@ -2,9 +2,11 @@ from random import randint
 
 # Create the game board
 # Initial code from CI sample video
+
+
 class Board:
     """
-    Creates the main board. Sets the size and the number 
+    Creates the main board. Sets the size and the number
     of ships allowed and the player's name.
     There are methods that print the board, add the ships
     and the guess on the board
@@ -18,14 +20,12 @@ class Board:
         self.guesses = []
         self.ships = []
 
-
     def print(self):
         """
         Function to print the board
         """
         for row in self.board:
             print(" ".join(row))
-
 
     def guess(self, x, y):
         """
@@ -39,7 +39,6 @@ class Board:
             return "It's a Hit"
         else:
             return "It's a Miss"
-    
 
     def add_ship(self, x, y, type="computer"):
         """
@@ -52,11 +51,13 @@ class Board:
             if self.type == "player":
                 self.board[x][y] = "O"
 
+
 def random_point(size):
     """
     Helper function to return a random integer between 0 and size
     """
     return randint(0, size - 1)
+
 
 def valid_places(size, x, y, guesses):
     """
@@ -78,7 +79,7 @@ def fill_board(board):
         while True:
             x = random_point(board.size)
             y = random_point(board.size)
-            
+
             if valid_places(board.size, x, y, board.ships):
                 board.add_ship(x, y)
                 break
@@ -91,11 +92,11 @@ def take_guess(board):
     1. Use valid coordinates
     2. Use "q" to quit
     3. Use coordinates that have used before and receive an error message
-    4. Use invalid coordinates and receive an error message. 
+    4. Use invalid coordinates and receive an error message.
     """
     while True:
-        xrow_input = input("Enter row position (0 to 4) or 'q' to quit: ")
-        
+        xrow_input = input("Enter row position (0 to 4) or 'q' to quit: \n")
+
         if xrow_input.lower() == 'q':
             print("Quitting the game...")
             exit()
@@ -104,7 +105,7 @@ def take_guess(board):
             print("Please provide a valid integer coordinate or 'q' to quit.")
             continue
 
-        ycol_input = input("Enter column position (0 to 4) or 'q' to quit: ")
+        ycol_input = input("Enter column position (0 to 4) or 'q' to quit: \n")
 
         if ycol_input.lower() == 'q':
             print("Quitting the game...")
@@ -114,15 +115,16 @@ def take_guess(board):
             print("Please provide a valid integer coordinate or 'q' to quit.")
             continue
 
-        x = int(x_input)
-        y = int(y_input)
+        x = int(xrow_input)
+        y = int(ycol_input)
 
         if not valid_places(board.size, x, y, board.guesses):
-            print("Please use valid coordinates or ones you have not used before")
+            print("Try valid coordinates or ones you have not used before")
         else:
             result = board.guess(x, y)
             print(result)
             break
+
 
 def computer_guess(player_board):
     while True:
@@ -140,7 +142,6 @@ def computer_guess(player_board):
         scores["computer"] += 1
 
 
-
 def start_game(computer_board, player_board):
     print('=============== PLAYER ===============')
     player_board.print()
@@ -152,7 +153,7 @@ def start_game(computer_board, player_board):
 
     max_turns = 25  # Maximum number of turns equivalent to all squares
     turn = 0  # Turn counter
-    
+
     while True:
         print("Player's Turn")
         take_guess(computer_board)
@@ -178,26 +179,29 @@ def start_game(computer_board, player_board):
         if scores["player"] == computer_board.am_ships:
             print("Oops! All your ships are destroyed! Computer won!")
             break
-        
+
+
 # Initial code from CI sample video
+
+
 def run_game():
     """
-    Starts a new game. Creates the board size, adds the number of ships, 
+    Starts a new game. Creates the board size, adds the number of ships,
     resets the scores and updates the boards.
     """
 
     size = 5
-    am_ships = 4 
+    am_ships = 4
     scores["player"] = 0
-    scores["computer"] = 0 
+    scores["computer"] = 0
     print("_" * 45)
     print("BATTLESHIPS UNLEASHED!")
     print(f"Board Size: {size}. Ship availability: {am_ships}")
     print("row: 0, col: 0, found at the top left corner of the board")
-    print("Ships will be automatically and randomly placed for both the player and the computer")
+    print("Ships are automatically and randomly placed for both the players")
     print("_" * 45)
-    player_name = input("Please write your name, if you don't write anything then I will just call you Player: \n").strip()
-    if player_name == '': 
+    player_name = input("Type your name, or just be called Player: \n").strip()
+    if player_name == '':
         player_name = 'Player'
     print(f'OK, so hi there {player_name}')
     print("_" * 45)
@@ -212,6 +216,7 @@ def run_game():
         sc = fill_board(computer_board)
 
     start_game(computer_board, player_board)
+
 
 scores = {"player": 0, "computer": 0}
 run_game()
