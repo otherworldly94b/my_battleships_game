@@ -9,44 +9,81 @@ The game board is represented by a grid of rounded-corner squares. Squares can c
 ## Features
 
 ### Existing Features
+
 - Random board creation
     - Automatically and randomly placed ships on both the computer and the players' boards.
     - The computer's ships are not visible to the player and vice versa.
 
-![initial screen]()
+![Initial screen](images/initial_screen.png)
 
 - Play against the computer
 - Takes user input
+- The player can quit the game by inputting "q"
 
-![turns]()
+![turns](images/turns.png)
 
 - Input validation and error-checking
     - You cannot enter the same coordinates twice
     - You cannot enter coordinates higher than the size of the grid
     - You must enter numbers
 
-![validation]()
+![validation](images/validation.png)
 
 - Data maintained in class instances
 
 ### Possible Future Features
+
 - Allow player to select the board size and the number of ships
 - Allow player to place ships on the board by themselves
 - Have different ship sizes
 - Keep scores
 
 ## Data Model
+
 I used a Board class as my model. It creates two class instances, one for the player and one for the computer boards.
 
 The Board class stores the board size, the amount of ships, the placement of the ships, the guesses against that board, the board type and the player's name. 
 
 The class also has methods to assist in the gameplay such as a "print" method to print out the boards, a "guess" method to add the guess to the board and an add_ships method to add the ships to the board.
 
-### Testing
+## Testing
 
 I have manually tested this project by doing the following:
 
 - Passed the code through a PEP8 linter and confirmed there are no problems.
+- Given invalid inputs: strings when numbers are expected, out of bound inputs, same input twice
+- Tested in my local terminal and the Code Institute Heroku terminal
+
+### Bugs
+#### Solved Bugs
+
+- Incrementing the player score and having them shown in the terminal. I managed to fix the player scores to appear and be incremented correctly but hadn't managed to do the same for the computer scores, so I decided to keep this feature out of production entirely.
+- When my valid_places function was being called, I would receive multiple print() statements before even the player would add their name. I removed the print() function and added it elsewhere for the invalid inputs
+
+#### Remaining Bugs
+
+- Incrementing the computer score and having it shown in the terminal. I had managed to do this for the player score but hadn't managed to do the same for the computer scores, so I decided to keep this feature out of production entirely.
+- When inputting an out-of-range number for the row input, it does invalidate your guess from the beginning, it waits for the column input to validate it. It will not validate the row input even if the column input is within range.
+- The game will not end automatically when the player hits all of the ships on the computer's board but it will end automatically and when the computer hits all the ships on the player's board.
+
+#### Validator Testing
+
+- PEP8
+    - No errors were returned from [pep8ci.herokuapp.com](https://pep8ci.herokuapp.com/)
+
+    - ![pep8](images/pep8.png)
+
+## Deployment
+
+This project was deployed using the Code Institute's mock terminal for Heroku.
+
+- Steps for deployment:
+    1. Fork or clone this repository
+    2. Create a new Heroku app
+    3. Create Config_vars in the Settings
+    4. Set the buildpacks to Python and NodeJS in that order
+    5. Link the Heroku app to the repository
+    6. Click on Deploy
 
 ## Game Flow
 
@@ -57,23 +94,8 @@ I have manually tested this project by doing the following:
 5. The board is updated with "X" on each board to reflect the guess.
 6. The game ends when all ships of either participant are destroyed or the maximum number of turns is reached.
 
-
-
-
-### Code Structure
-
-The code consists of the following components:
-
-- `Board` class: Represents the game board and provides methods to print the board, add ships, and handle guesses.
-- `valid_places` function: Checks if the provided coordinates are valid within the bounds of the game board.
-- `fill_board` function: Fills the game board with ships by generating random coordinates and checking for validity.
-- `take_guess` function: Handles the player's guess input by prompting for row and column coordinates, validating the inputs, and updating the board.
-- `computer_guess` function: Generates random coordinates for the computer's guess and updates the board accordingly.
-- `start_game` function: Initializes the game, prints the initial board state, and handles the game flow until a win condition or maximum turns are reached.
-- `run_game` function: Entry point of the game, sets up the game parameters, creates the player and computer boards, and starts the game.
-
-### Running the Game
-
-To play the game, simply execute the code. The game will prompt you for your name and display the initial game board. Enter the row and column coordinates for your guess when prompted, and the game will indicate whether it's a hit or a miss. The computer will then take its turn. The game continues until a win condition or the maximum number of turns is reached.
-
-Enjoy the Battleships game!
+## Credits
+- Code institute for the deployment terminal
+- The sample video in the LMS
+- My mentor who checked and advised me on my code
+- [W3C Schools](https://www.w3schools.com/) for code searching and clarifications.
