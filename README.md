@@ -64,7 +64,8 @@ I have manually tested this project by doing the following:
 
 - Incrementing the computer score and having it shown in the terminal. I had managed to do this for the player score but hadn't managed to do the same for the computer scores, so I decided to keep this feature out of production entirely.
 - When inputting an out-of-range number for the row input, it does invalidate your guess from the beginning, it waits for the column input to validate it. It will not validate the row input even if the column input is within range.
-- The game will not end automatically when the player hits all of the ships on the computer's board but it will end automatically and when the computer hits all the ships on the player's board.
+- The game will not end automatically when the player hits all of the ships on the computer's board but it will end automatically and when the computer hits all the ships on the player's board. After a lot of testing, I could only get either the player or the computer to win with this method. I decided to leave the computer as the automatic winner.
+In this way, the computer always essentially always win but I decided this because the player has the option and mental capacity to quit when they have hit all of the computer's ships.
 
 #### Validator Testing
 

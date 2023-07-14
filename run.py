@@ -142,6 +142,9 @@ def computer_guess(player_board):
         scores["computer"] += 1
 
 
+scores = {"player": 0, "computer": 0}
+
+
 def start_game(computer_board, player_board):
     print('=============== PLAYER ===============')
     player_board.print()
@@ -165,17 +168,19 @@ def start_game(computer_board, player_board):
             print("Maximum number of turns reached. Game over!")
             break
 
+        # Check if the player has won
+        if scores["player"] == computer_board.am_ships:
+            print("Congratulations! You destroyed all the computer's ships.")
+            break
+
         print("Computer's Turn")
         computer_guess(player_board)
         player_board.print()
         print("")
 
-        # Check if the game is over after each guess
+        # Check if the computer has won
         if scores["computer"] == player_board.am_ships:
-            print("Game Over! All ships on a board have been destroyed")
-            break
-        if scores["player"] == computer_board.am_ships:
-            print("Game Over! All ships on a board have been destroyed")
+            print("Game Over! All your ships have been destroyed.")
             break
 
 
@@ -216,5 +221,4 @@ def run_game():
     start_game(computer_board, player_board)
 
 
-scores = {"player": 0, "computer": 0}
 run_game()
