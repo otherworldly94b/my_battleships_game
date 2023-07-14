@@ -17,7 +17,6 @@ The game board is represented by a grid of rounded-corner squares. Squares can c
 
 - Play against the computer
 - Takes user input
-- Keeps scores (still needs to be implemented)
 
 ![turns]()
 
@@ -34,6 +33,7 @@ The game board is represented by a grid of rounded-corner squares. Squares can c
 - Allow player to select the board size and the number of ships
 - Allow player to place ships on the board by themselves
 - Have different ship sizes
+- Keep scores
 
 ## Data Model
 I used a Board class as my model. It creates two class instances, one for the player and one for the computer boards.
@@ -41,6 +41,12 @@ I used a Board class as my model. It creates two class instances, one for the pl
 The Board class stores the board size, the amount of ships, the placement of the ships, the guesses against that board, the board type and the player's name. 
 
 The class also has methods to assist in the gameplay such as a "print" method to print out the boards, a "guess" method to add the guess to the board and an add_ships method to add the ships to the board.
+
+### Testing
+
+I have manually tested this project by doing the following:
+
+- Passed the code through a PEP8 linter and confirmed there are no problems.
 
 ## Game Flow
 
