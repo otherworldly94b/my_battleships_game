@@ -160,21 +160,15 @@ def start_game(computer_board, player_board):
         computer_board.print()
         print("")
 
-        # Confirm if the player has won
-        if scores["computer"] == player_board.am_ships:
-            print("Amazing! All enemy ships destroyed! You won!")
-            break
-
-        # Confirm if the player has won
-        if scores["computer"] == player_board.am_ships:
-            print("Amazing! All enemy ships destroyed! You won!")
+        # Check if the game is over after each guess
+        if scores["computer"] == player_board.am_ships or scores["player"] == computer_board.am_ships:
             break
 
         # Confirm if the computer has won
         if scores["player"] == computer_board.am_ships:
             print("Oops! All your ships are destroyed! Computer won!")
             break
-    
+
         turn += 1
         if turn >= max_turns:
             print("Maximum number of turns reached. Game over!")
@@ -185,9 +179,9 @@ def start_game(computer_board, player_board):
         player_board.print()
         print("")
 
-        # Confirm if the computer has won
-        if scores["player"] == computer_board.am_ships:
-            print("Oops! All your ships are destroyed! Computer won!")
+        # Check if the game is over after each guess
+        if scores["computer"] == player_board.am_ships or scores["player"] == computer_board.am_ships:
+            print("Game Over! All ships on a board have been destroyed")
             break
 
 

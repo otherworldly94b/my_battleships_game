@@ -36,9 +36,11 @@ class Board:
 
         if (x, y) in self.ships:
             self.board[x][y] = "*"
+            scores["player"] += 1
             return "It's a Hit"
         else:
             return "It's a Miss"
+
 
     def add_ship(self, x, y, type="computer"):
         """
@@ -94,6 +96,7 @@ def take_guess(board):
     3. Use coordinates that have used before and receive an error message
     4. Use invalid coordinates and receive an error message.
     """
+
     while True:
         xrow_input = input("Enter row position (0 to 4) or 'q' to quit: \n")
 
@@ -111,19 +114,18 @@ def take_guess(board):
             print("Quitting the game...")
             exit()
 
-        if not ycol_input.isdigit():
-            print("Please provide a valid integer coordinate or 'q' to quit.")
-            continue
-
         x = int(xrow_input)
         y = int(ycol_input)
 
         if not valid_places(board.size, x, y, board.guesses):
             print("Try valid coordinates or ones you have not used before")
-        else:
-            result = board.guess(x, y)
-            print(result)
-            break
+            continue
+
+        result = board.guess(x, y)
+        print(result)
+        break
+
+
 
 
 def computer_guess(player_board):
@@ -139,59 +141,16 @@ def computer_guess(player_board):
     print(result)
 
     if result == "It's a Hit":
-        scores["computer"] += 1
+        # Increment the player's score
+        scores["player"] += 1
 
 
-def start_game(computer_board, player_board):
-    print('=============== PLAYER ===============')
-    player_board.print()
-    print('====================================')
-    print('\n')
-    print('=============== COMPUTER =============')
-    computer_board.print()
-    print('====================================')
-
-    max_turns = 25  # Maximum number of turns equivalent to all squares
-    turn = 0  # Turn counter
-
-    while True:
-        print("Player's Turn")
-        take_guess(computer_board)
-        computer_board.print()
-        print("")
-
-        # Confirm if the player has won
-        if scores["computer"] == player_board.am_ships:
-            print("Amazing! All enemy ships destroyed! You won!")
-            break
-
-        # Confirm if the player has won
-        if scores["computer"] == player_board.am_ships:
-            print("Amazing! All enemy ships destroyed! You won!")
-            break
-
-        # Confirm if the computer has won
-        if scores["player"] == computer_board.am_ships:
-            print("Oops! All your ships are destroyed! Computer won!")
-            break
-    
-        turn += 1
-        if turn >= max_turns:
-            print("Maximum number of turns reached. Game over!")
-            break
-
-        print("Computer's Turn")
-        computer_guess(player_board)
-        player_board.print()
-        print("")
-
-        # Confirm if the computer has won
-        if scores["player"] == computer_board.am_ships:
-            print("Oops! All your ships are destroyed! Computer won!")
-            break
-
-
-# Initial code from CI sample video
+def print_scores(scores):
+    """
+    Print the scores of each player.
+    """
+    print(f"Player score: {scores['player']}")
+    print(f"Computer score: {scores['computer']}")
 
 
 def run_game():
@@ -227,6 +186,55 @@ def run_game():
 
     start_game(computer_board, player_board)
 
+
+def start_game(computer_board, player_board):
+    """
+    Starts a new game. Handles the turns of each player.
+    """
+
+    print('=============== PLAYER ===============')
+    player_board.print()
+    print('====================================')
+    print('\n')
+    print('=============== COMPUTER =============')
+    computer_board.print()
+    print('====================================')
+
+    max_turns = 25  # Maximum number of turns equivalent to all squares
+    turn = 0  # Turn counter
+
+    while True:
+        print("Player's Turn")
+        take_guess(computer_board)
+        computer_board.print()
+        print("")
+
+        # Confirm if the player has won
+        if scores["computer"] == player_board.am_ships:
+            print("Amazing! All enemy ships destroyed! You won!")
+            break
+
+        # Confirm if the computer has won
+        if scores["player"] == computer_board.am_ships:
+            print("Oops! All your ships are destroyed! Computer won!")
+            break
+
+        print_scores(scores)
+
+        turn += 1
+        if turn >= max_turns:
+            print("Maximum number of turns reached. Game over!")
+            break
+
+        print("Computer's Turn")
+        computer_guess(player_board)
+        player_board.print()
+        print("")
+
+        # Confirm if the computer has won
+        if scores["player"] == computer_board.am_ships:
+            print("Oops! All your ships are destroyed! Computer won!")
+            break
 
 scores = {"player": 0, "computer": 0}
 run_game()
